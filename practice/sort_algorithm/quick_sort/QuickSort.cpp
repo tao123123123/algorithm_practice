@@ -107,21 +107,40 @@ void processFile(const char* filename) {
     }
 }
 
+template <typename T>
+std::string inferDataType(const char* filename) {
+    std::ifstream inputFile(filename);
+    if (!inputFile.is_open()) {
+        std::cerr << "Error: Could not open the file." << std::endl;
+        exit(1);
+    }
+
+    T value;
+    if (inputFile >> value) {
+        return typeid(value).name();
+    } else {
+        std::cerr << "Error: Could not infer data type from the file." << std::endl;
+        exit(1);
+    }
+}
+
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <input_file> <data_type>" << std::endl;
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <input_file>" << std::endl;
         return 1;
     }
 
     const char* filename = argv[1];
-    std::string dataType = argv[2];
+    std::string dataType = inferDataType<int>(filename);
 
-    if (dataType == "int") {
+    if (dataType == typeid(int).name()) {
         processFile<int>(filename);
-    } else if (dataType == "double") {
+    } else if (dataType == typeid(double).name()) {
         processFile<double>(filename);
-    } else if (dataType == "String") {
+    } else if (dataType == typeid(char).name()) {
         processFile<char>(filename);
+    } else if (dataType == typeid(std::string).name()) {
+        processFile<std::string>(filename);
     } else {
         std::cerr << "Error: Unsupported data type." << std::endl;
         return 1;
