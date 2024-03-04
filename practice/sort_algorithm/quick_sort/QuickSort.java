@@ -23,9 +23,9 @@ public class QuickSort
 		while(true)
 		{
 			while(less(a[++i], v))
-				if(i > hi) break;
+				if(i == hi) break;
 			while(less(v, a[--j]))
-				if(j < lo) break;
+				if(j == lo) break;
 			if(i >= j) break;
 
 			exch(a, i, j);
@@ -73,7 +73,7 @@ public class QuickSort
 			throw new RuntimeException("out of boundary!");
 		int lo = 0;
 		int hi = a.length - 1;
-		
+		StdRandom.shuffle(a);
 		
 		while(hi > lo)
 		{
