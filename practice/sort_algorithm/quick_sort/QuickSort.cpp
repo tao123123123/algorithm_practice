@@ -1,12 +1,11 @@
 // The header <algorithm> defines a collection of functions especially designed
 // to be used on ranges of elements included random_shuffle  
 #include <algorithm>
-
-#include <cassert>
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <stdexcept>
+#include <cassert>		// Provide the assert micro
+#include <iostream>             // Provide input output stream and standard error stream
+#include <fstream>              // Provide file stream classes and control file open and close 
+#include <vector>		// Provide standard vector template class
+#include <stdexcept>            // Provide the standard exception classes include runtime error
 
 // The keyword typename is used to declare template parameters that 
 // represent types, and class can also be used interchangeably with typename in this context
